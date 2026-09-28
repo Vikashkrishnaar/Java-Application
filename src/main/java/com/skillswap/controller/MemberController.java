@@ -1,0 +1,50 @@
+package com.skillswap.controller;
+
+import com.skillswap.dto.MemberRequest;
+import com.skillswap.dto.MemberResponse;
+import com.skillswap.service.MemberService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/members")
+public class MemberController {
+
+    private final MemberService memberService;
+
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
+    @PostMapping
+    public ResponseEntity<MemberResponse> createMember(
+            @Valid @RequestBody MemberRequest request) {
+
+        MemberResponse response = memberService.createMember(request);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MemberResponse>> getAllMembers() {
+
+        return ResponseEntity.ok(
+                memberService.getAllMembers()
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MemberResponse> getMemberById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                memberService.getMemberById(id)
+        );
+    }
+}
