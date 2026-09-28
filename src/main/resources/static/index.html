@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSwap — Community Skill Exchange with Time Credits</title>
+  <meta name="description" content="SkillSwap is a peer-to-peer community skill exchange platform where time is currency. Teach to earn hours, learn to spend hours." />
+  
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bespoke Stylesheets -->
+  <link rel="stylesheet" href="/css/design-system.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/views.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- ====================================================================
+         DESKTOP SIDEBAR NAVIGATION
+         ==================================================================== -->
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-header">
+          <div class="logo-container">
+            <div class="logo-symbol">⏱</div>
+            <div class="logo-text-group">
+              <span class="logo-title">SKILLSWAP</span>
+              <span class="logo-subtitle">Time Exchange</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#dashboard" class="nav-link active" data-view="dashboard">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span>Dashboard</span>
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#discover" class="nav-link" data-view="discover">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Discover Skills</span>
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#my-skills" class="nav-link" data-view="my-skills">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                <span>My Skills</span>
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#requests" class="nav-link" data-view="requests">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                  <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                </svg>
+                <span>Requests</span>
+              </div>
+              <span id="requests-badge" class="nav-badge" style="display: none;">0</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#sessions" class="nav-link" data-view="sessions">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Sessions</span>
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#ledger" class="nav-link" data-view="ledger">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Time Ledger</span>
+              </div>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#profile" class="nav-link" data-view="profile">
+              <div class="nav-link-content">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profile</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Persistent Sidebar Time Box -->
+      <div class="sidebar-time-box">
+        <div class="time-box-label">
+          <span>Available Time</span>
+          <span>⏱</span>
+        </div>
+        <div class="time-box-value">
+          <span id="sidebar-time-balance" class="time-num">0.0</span>
+          <span class="time-box-unit">Hours</span>
+        </div>
+        <div class="time-box-sub">
+          <span>Currency: Time</span>
+          <span style="color: var(--accent-amber); font-weight: 600;">1h = 1 Credit</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+         MAIN VIEWPORT
+         ==================================================================== -->
+    <main class="main-viewport">
+      
+      <!-- Topbar with Active Member Switcher -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="brand-badge">
+            <span class="brand-dot"></span>
+            <span>SkillSwap</span>
+          </div>
+          <span id="topbar-crumb" class="page-title-crumb">My Time Exchange</span>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Reset / Demo Controls -->
+          <button id="clean-reset-btn" class="btn btn-secondary btn-sm" title="Reset database to clean slate for live demonstration">
+            🧹 Clean Slate
+          </button>
+          <button id="dev-seed-btn" class="btn btn-secondary btn-sm" title="Load realistic sample demo dataset">
+            📦 Sample Pack
+          </button>
+
+          <!-- Active Member Switcher Dropdown -->
+          <div class="member-switcher-wrapper">
+            <button id="member-switcher-toggle" class="member-switcher-btn">
+              <div id="active-member-avatar" class="member-avatar-sm">DS</div>
+              <div class="member-meta-sm">
+                <span id="active-member-name" class="member-name-sm">Loading...</span>
+                <span id="active-member-balance" class="member-balance-sm time-num">⏱ 0.0h</span>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div id="member-switcher-menu" class="member-switcher-menu"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Views Wrapper -->
+      <div class="content-wrapper">
+        <section id="dashboard-view" class="view-section active-view"></section>
+        <section id="discover-view" class="view-section"></section>
+        <section id="my-skills-view" class="view-section"></section>
+        <section id="requests-view" class="view-section"></section>
+        <section id="sessions-view" class="view-section"></section>
+        <section id="ledger-view" class="view-section"></section>
+        <section id="profile-view" class="view-section"></section>
+      </div>
+
+    </main>
+
+    <!-- ====================================================================
+         MOBILE NAVIGATION BAR
+         ==================================================================== -->
+    <nav class="mobile-nav-bar">
+      <a href="#dashboard" class="mobile-nav-item active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Home</span>
+      </a>
+      <a href="#discover" class="mobile-nav-item" data-view="discover">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>Discover</span>
+      </a>
+      <a href="#requests" class="mobile-nav-item" data-view="requests">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+        <span>Requests</span>
+      </a>
+      <a href="#sessions" class="mobile-nav-item" data-view="sessions">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>Sessions</span>
+      </a>
+      <a href="#ledger" class="mobile-nav-item" data-view="ledger">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        <span>Ledger</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- ====================================================================
+       DIALOG MODALS
+       ==================================================================== -->
+
+  <!-- 1. REQUEST SESSION MODAL -->
+  <div id="request-session-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Request Time Exchange</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="request-session-form">
+        <div class="modal-body">
+          <input type="hidden" id="req-modal-skill-id" />
+          
+          <div style="background-color: var(--bg-surface); padding: 14px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Skill Selected</div>
+            <div id="req-modal-skill-title" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-top: 2px;">Python Programming</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Provider: <strong id="req-modal-provider-name" style="color: var(--accent-amber);">Aarav Sharma</strong></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="req-modal-hours-input">Session Duration (Hours)</label>
+            <input type="number" id="req-modal-hours-input" class="form-input" min="1" max="10" step="0.5" value="2" required />
+            <span class="form-help-text">1 Hour of teaching = 1 Time Credit</span>
+          </div>
+
+          <!-- Interactive Time Balance Preview -->
+          <div class="balance-preview-box">
+            <div class="calc-row">
+              <span>Your Current Time Balance</span>
+              <span id="calc-current-balance" class="calc-val time-num">0.0 h</span>
+            </div>
+            <div class="calc-row">
+              <span>Session Time Cost</span>
+              <span id="calc-session-cost" class="calc-val time-num" style="color: var(--color-spent);">-2.0 h</span>
+            </div>
+            <div class="calc-row result">
+              <span>Projected Balance After Delivery</span>
+              <span id="calc-remaining-balance" class="calc-val time-num">0.0 h</span>
+            </div>
+          </div>
+
+          <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.4;">
+            ℹ Note: Credits are <strong>not deducted now</strong>. Time transfers only after the provider confirms delivery of the session.
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" id="req-modal-submit-btn" class="btn btn-primary">Confirm Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. COMPLETE SESSION MODAL (PROVIDER DELIVERY) -->
+  <div id="complete-session-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Log Delivered Session</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="complete-session-form">
+        <div class="modal-body">
+          <input type="hidden" id="complete-modal-session-id" />
+
+          <div style="background-color: var(--bg-surface); padding: 14px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+            <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Completed Exchange</div>
+            <div id="complete-modal-skill-title" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-top: 2px;">Session</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">Learner: <strong id="complete-modal-requester-name" style="color: var(--text-primary);">Member</strong></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="complete-modal-hours-input">Actual Hours Delivered</label>
+            <input type="number" id="complete-modal-hours-input" class="form-input" min="0.5" max="10" step="0.5" value="2" required />
+            <span class="form-help-text">Hours must be > 0 and ≤ requested hours.</span>
+          </div>
+
+          <div class="balance-preview-box">
+            <div class="calc-row">
+              <span>Your Account (Provider)</span>
+              <span id="complete-calc-provider-gain" class="calc-val time-num" style="color: var(--color-earned);">+2.0 h Earned</span>
+            </div>
+            <div class="calc-row">
+              <span>Learner Account (Requester)</span>
+              <span id="complete-calc-requester-debit" class="calc-val time-num" style="color: var(--color-spent);">-2.0 h Debited</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" id="complete-modal-submit-btn" class="btn btn-sage">Log & Transfer Time</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. OFFER NEW SKILL MODAL -->
+  <div id="offer-skill-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Offer a Skill to Community</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="offer-skill-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="offer-modal-title">Skill Title</label>
+            <input type="text" id="offer-modal-title" class="form-input" placeholder="e.g. React Web Development" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="offer-modal-category">Category</label>
+            <select id="offer-modal-category" class="form-select" required>
+              <option value="CODE">Code & Technology</option>
+              <option value="DESIGN">Design & Creative</option>
+              <option value="LANGUAGES">Languages</option>
+              <option value="MUSIC">Music & Arts</option>
+              <option value="ACADEMICS">Academics & Science</option>
+              <option value="CAREER">Career & Mentorship</option>
+              <option value="BUSINESS">Business & Finance</option>
+              <option value="PRACTICAL">Practical Skills</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="offer-modal-hours">Available Hours You Can Offer</label>
+            <input type="number" id="offer-modal-hours" class="form-input" min="1" max="50" step="1" value="6" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="offer-modal-description">Description & Teaching Approach</label>
+            <textarea id="offer-modal-description" class="form-textarea" rows="3" placeholder="Briefly explain what you will help learners achieve..." required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" id="offer-modal-submit-btn" class="btn btn-primary">Publish Skill Offer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. REGISTER NEW MEMBER MODAL -->
+  <div id="create-member-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Register New Community Member</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="create-member-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="member-modal-name">Full Name</label>
+            <input type="text" id="member-modal-name" class="form-input" placeholder="e.g. Maya Patel" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="member-modal-email">Email Address</label>
+            <input type="email" id="member-modal-email" class="form-input" placeholder="e.g. maya@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="member-modal-phone">Phone Number</label>
+            <input type="text" id="member-modal-phone" class="form-input" placeholder="e.g. +91 9876543210" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="member-modal-balance">Initial Welcome Time Credits (Hours)</label>
+            <input type="number" id="member-modal-balance" class="form-input" min="0" max="100" step="1" value="10" required />
+            <span class="form-help-text">Standard community onboarding grant is 10.0 hours.</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" id="member-modal-submit-btn" class="btn btn-primary">Register Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/mappers.js"></script>
+  <script src="/js/state.js"></script>
+  <script src="/js/components.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

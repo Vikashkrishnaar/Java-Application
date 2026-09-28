@@ -26,4 +26,10 @@ public class DevSeedController {
         Map<String, Object> result = dataSeederService.seedDemoData(force);
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/reset-clean")
+    public ResponseEntity<Map<String, Object>> resetCleanSlate() {
+        Map<String, Object> result = dataSeederService.resetCleanSlate();
+        return ResponseEntity.ok(result);
+    }
 }

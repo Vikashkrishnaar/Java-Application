@@ -48,6 +48,30 @@ public class DataSeederService {
     }
 
     @Transactional
+    public Map<String, Object> resetCleanSlate() {
+        log.info("Resetting database to clean starter members with zero offers/sessions/ledger...");
+        creditLedgerRepository.deleteAll();
+        sessionRequestRepository.deleteAll();
+        skillOfferRepository.deleteAll();
+        memberRepository.deleteAll();
+
+        // Legitimate community participants with 10h initial grant
+        createMember("Diya Patel", "diya.patel@example.com", "9876543211", 10);
+        createMember("Arjun Sharma", "arjun.sharma@example.com", "9876543210", 10);
+        createMember("Ravi Verma", "ravi.verma@example.com", "9876543212", 10);
+        createMember("Ananya Iyer", "ananya.iyer@example.com", "9876543213", 10);
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("status", "SUCCESS");
+        result.put("message", "Database reset to clean slate with 4 participant members and 0 skills/sessions/ledger.");
+        result.put("membersCount", memberRepository.count());
+        result.put("skillOffersCount", skillOfferRepository.count());
+        result.put("sessionRequestsCount", sessionRequestRepository.count());
+        result.put("creditLedgerCount", creditLedgerRepository.count());
+        return result;
+    }
+
+    @Transactional
     public Map<String, Object> seedDemoData(boolean force) {
 
         long existingMembers = memberRepository.count();
